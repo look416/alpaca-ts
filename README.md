@@ -1,7 +1,3 @@
-> This SDK is no longer in development and is not maintained by Alpaca.
->
-> Please see [alpaca-trade-api-js](https://github.com/alpacahq/alpaca-trade-api-js/) for our official JavaScript/TypesScript Client SDK.
-
 # typescript-sdk
 
 ![version](https://img.shields.io/badge/dynamic/json?label=version&query=$[0].name&url=https://api.github.com/repos/alpacahq/typescript-sdk/tags&style=flat&color=FF33A0)
@@ -112,79 +108,121 @@ Bursting is allowed, but the client will block requests if the token bucket is e
 
 #### Trading API
 
-- [`getAccount`](#getaccount)
-- [`createOrder`](#createorder)
-- [`getOrder`](#getorder)
-- [`getOrders`](#getorders)
-- [`replaceOrder`](#replaceorder)
-- [`cancelOrder`](#cancelorder)
-- [`cancelOrders`](#cancelorders)
-- [`getPosition`](#getposition)
-- [`getPositions`](#getpositions)
-- [`closePosition`](#closeposition)
-- [`closePositions`](#closepositions)
-- [`exerciseOption`](#exerciseoption)
-- [`getCalendar`](#getcalendar)
-- [`getClock`](#getclock)
-- [`getAsset`](#getasset)
-- [`getAssets`](#getassets)
-- [`getWatchlist`](#getwatchlist)
-- [`getWatchlists`](#getwatchlists)
-- [`createWatchlist`](#createwatchlist)
-- [`updateWatchlist`](#updatewatchlist)
-- [`deleteWatchlist`](#deletewatchlist)
-- [`getPortfolioHistory`](#getportfoliohistory)
-- [`getConfigurations`](#getconfigurations)
-- [`updateConfigurations`](#updateconfigurations)
-- [`getActivity`](#getactivity)
-- [`getActivities`](#getactivities)
-- [`getOptionsContract`](#getoptionscontract)
-- [`getOptionsContracts`](#getoptionscontracts)
-- [`getCorporateAction`](#getcorporateaction)
-- [`getCorporateActions`](#getcorporateactions)
-- [`getCryptoWallet`](#getcryptowallet)
-- [`getCryptoWallets`](#getcryptowallets)
-- [`getFeeEstimate`](#getfeeestimate)
-- [`getCryptoTransfer`](#getcryptotransfer)
-- [`getCryptoTransfers`](#getcryptotransfers)
-- [`createCryptoTransfer`](#createcryptotransfer)
-- [`getCryptoWhitelistedAddress`](#getcryptowhitelistedaddress)
-- [`getCryptoWhitelistedAddresses`](#getcryptowhitelistedaddresses)
-- [`requestCryptoWhitelistedAddress`](#requestcryptowhitelistedaddress)
-- [`removeCryptoWhitelistedAddress`](#removecryptowhitelistedaddress)
+**Account**
+- [`getAccount`](#getaccount) - Get account information
+- [`getAccountConfigurations`](#getaccountconfigurations) - Get account configurations
+- [`updateAccountConfigurations`](#updateaccountconfigurations) - Update account configurations
+- [`getPortfolioHistory`](#getportfoliohistory) - Get portfolio history
+
+**Orders**
+- [`createOrder`](#createorder) - Create a new order
+- [`getOrder`](#getorder) - Get order by ID
+- [`getOrderByClientOrderId`](#getorderbyclientorderid) - Get order by client order ID
+- [`getOrders`](#getorders) - List orders
+- [`replaceOrder`](#replaceorder) - Replace an existing order
+- [`cancelOrder`](#cancelorder) - Cancel an order
+- [`cancelAllOrders`](#cancelallorders) - Cancel all open orders
+
+**Positions**
+- [`getPosition`](#getposition) - Get a position
+- [`getPositions`](#getpositions) - List all positions
+- [`closePosition`](#closeposition) - Close a position
+- [`closeAllPositions`](#closeallpositions) - Close all positions
+- [`exerciseOption`](#exerciseoption) - Exercise an options contract
+- [`doNotExerciseOption`](#donotexerciseoption) - Elect to not exercise an options contract
+
+**Assets**
+- [`getAsset`](#getasset) - Get an asset
+- [`getAssets`](#getassets) - List assets
+
+**Calendar**
+- [`getCalendar`](#getcalendar) - Get market calendar
+- [`getClock`](#getclock) - Get market clock
+
+**Activities**
+- [`getActivity`](#getactivity) - Get activities by type
+- [`getActivities`](#getactivities) - List all activities
+
+**Options Contracts**
+- [`getOptionsContract`](#getoptionscontract) - Get an options contract
+- [`getOptionsContracts`](#getoptionscontracts) - List options contracts
+
+**Watchlists**
+- [`getWatchlist`](#getwatchlist) - Get a watchlist by ID
+- [`getWatchlistByName`](#getwatchlistbyname) - Get a watchlist by name
+- [`getWatchlists`](#getwatchlists) - List all watchlists
+- [`createWatchlist`](#createwatchlist) - Create a watchlist
+- [`updateWatchlist`](#updatewatchlist) - Update a watchlist by ID
+- [`updateWatchlistByName`](#updatewatchlistbyname) - Update a watchlist by name
+- [`deleteWatchlist`](#deletewatchlist) - Delete a watchlist by ID
+- [`deleteWatchlistByName`](#deletewatchlistbyname) - Delete a watchlist by name
+- [`addAssetToWatchlist`](#addassettowatchlist) - Add an asset to watchlist by ID
+- [`addAssetToWatchlistByName`](#addassettowatchlistbyname) - Add an asset to watchlist by name
+- [`removeAssetFromWatchlist`](#removeassetfromwatchlist) - Remove an asset from watchlist
+
+**Corporate Actions (Announcements)**
+- [`getCorporateAction`](#getcorporateaction) - Get a corporate action announcement
+- [`getCorporateActions`](#getcorporateactions) - List corporate action announcements
+
+**Crypto Funding**
+- [`getCryptoWallet`](#getcryptowallet) - Get a crypto wallet
+- [`getCryptoWallets`](#getcryptowallets) - List all crypto wallets
+- [`getFeeEstimate`](#getfeeestimate) - Get fee estimate for withdrawal
+- [`getCryptoTransfer`](#getcryptotransfer) - Get a crypto transfer
+- [`getCryptoTransfers`](#getcryptotransfers) - List crypto transfers
+- [`createCryptoTransfer`](#createcryptotransfer) - Create a crypto withdrawal
+- [`getCryptoWhitelistedAddress`](#getcryptowhitelistedaddress) - Get a whitelisted address
+- [`getCryptoWhitelistedAddresses`](#getcryptowhitelistedaddresses) - List whitelisted addresses
+- [`requestCryptoWhitelistedAddress`](#requestcryptowhitelistedaddress) - Request a whitelisted address
+- [`removeCryptoWhitelistedAddress`](#removecryptowhitelistedaddress) - Remove a whitelisted address
 
 #### Market Data API
 
-- [`getStocksCorporateActions`](#getstockscorporateactions)
-- [`getLogo`](#getlogo)
-- [`getNews`](#getnews)
-- [`getStocksMostActives`](#getstocksmostactives)
-- [`getStocksMarketMovers`](#getstocksmarketmovers)
-- [`getStocksQuotes`](#getstocksquotes)
-- [`getStocksQuotesLatest`](#getstocksquoteslatest)
-- [`getStocksBars`](#getstocksbars)
-- [`getStocksBarsLatest`](#getstocksbarslatest)
-- [`getForexRates`](#getforexrates)
-- [`getLatestForexRates`](#getlatestforexrates)
-- [`getStocksSnapshots`](#getstockssnapshots)
-- [`getStocksAuctions`](#getstocksauctions)
-- [`getStocksConditions`](#getstocksconditions)
-- [`getStocksExchangeCodes`](#getstocksexchangecodes)
-- [`getStocksTrades`](#getstockstrades)
-- [`getStocksTradesLatest`](#getstockstradeslatest)
-- [`getOptionsBars`](#getoptionsbars)
-- [`getOptionsExchanges`](#getoptionsexchanges)
-- [`getOptionsSnapshots`](#getoptionssnapshots)
-- [`getOptionsTrades`](#getoptionstrades)
-- [`getOptionsTradesLatest`](#getoptionstradeslatest)
-- [`getCryptoBars`](#getcryptobars)
-- [`getLatestCryptoBars`](#getlatestcryptobars)
-- [`getCryptoQuotes`](#getcryptoquotes)
-- [`getCryptoQuotesLatest`](#getcryptoquoteslatest)
-- [`getCryptoSnapshots`](#getcryptosnapshots)
-- [`getCryptoTrades`](#getcryptotrades)
-- [`getCryptoTradesLatest`](#getcryptotradeslatest)
-- [`getLatestCryptoOrderbooks`](#getlatestcryptoorderbooks)
+**Stocks**
+- [`getStocksBars`](#getstocksbars) - Get stock bars
+- [`getStocksBarsLatest`](#getstocksbarslatest) - Get latest stock bars
+- [`getStocksQuotes`](#getstocksquotes) - Get stock quotes
+- [`getStocksQuotesLatest`](#getstocksquoteslatest) - Get latest stock quotes
+- [`getStocksTrades`](#getstockstrades) - Get stock trades
+- [`getStocksTradesLatest`](#getstockstradeslatest) - Get latest stock trades
+- [`getStocksSnapshots`](#getstockssnapshots) - Get stock snapshots
+- [`getStocksAuctions`](#getstocksauctions) - Get stock auctions
+- [`getStocksConditions`](#getstocksconditions) - Get condition codes
+- [`getStocksExchangeCodes`](#getstocksexchangecodes) - Get exchange codes
+
+**Crypto**
+- [`getCryptoBars`](#getcryptobars) - Get crypto bars
+- [`getLatestCryptoBars`](#getlatestcryptobars) - Get latest crypto bars
+- [`getCryptoQuotes`](#getcryptoquotes) - Get crypto quotes
+- [`getCryptoQuotesLatest`](#getcryptoquoteslatest) - Get latest crypto quotes
+- [`getCryptoTrades`](#getcryptotrades) - Get crypto trades
+- [`getCryptoTradesLatest`](#getcryptotradeslatest) - Get latest crypto trades
+- [`getCryptoSnapshots`](#getcryptosnapshots) - Get crypto snapshots
+- [`getLatestCryptoOrderbooks`](#getlatestcryptoorderbooks) - Get latest crypto orderbooks
+
+**Options**
+- [`getOptionsBars`](#getoptionsbars) - Get options bars
+- [`getOptionsTrades`](#getoptionstrades) - Get options trades
+- [`getOptionsTradesLatest`](#getoptionstradeslatest) - Get latest options trades
+- [`getOptionsSnapshots`](#getoptionssnapshots) - Get options snapshots
+- [`getOptionsExchanges`](#getoptionsexchanges) - Get options exchanges
+
+**Forex**
+- [`getForexRates`](#getforexrates) - Get forex rates
+- [`getLatestForexRates`](#getlatestforexrates) - Get latest forex rates
+
+**News**
+- [`getNews`](#getnews) - Get news articles
+
+**Screener**
+- [`getStocksMostActives`](#getstocksmostactives) - Get most active stocks
+- [`getStocksMarketMovers`](#getstocksmarketmovers) - Get market movers
+
+**Logos**
+- [`getLogo`](#getlogo) - Get company logo
+
+**Corporate Actions (Market Data)**
+- [`getStocksCorporateActions`](#getstockscorporateactions) - Get corporate actions data
 
 #### `getAccount`
 
@@ -217,6 +255,16 @@ Retrieves a specific order by its ID.
 ```typescript
 client
   .getOrder({ order_id: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" })
+  .then(console.log);
+```
+
+#### `getOrderByClientOrderId`
+
+Retrieves a specific order by its client order ID.
+
+```typescript
+client
+  .getOrderByClientOrderId({ client_order_id: "my-custom-order-id" })
   .then(console.log);
 ```
 
@@ -258,12 +306,12 @@ client
   .then(console.log);
 ```
 
-#### `cancelOrders`
+#### `cancelAllOrders`
 
 Cancels all open orders.
 
 ```typescript
-client.cancelOrders().then(console.log);
+client.cancelAllOrders().then(console.log);
 ```
 
 #### `getPosition`
@@ -298,12 +346,12 @@ client
   .then(console.log);
 ```
 
-#### `closePositions`
+#### `closeAllPositions`
 
 Closes all positions.
 
 ```typescript
-client.closePositions().then(console.log);
+client.closeAllPositions().then(console.log);
 ```
 
 #### `exerciseOption`
@@ -313,7 +361,19 @@ Exercises an options contract.
 ```typescript
 client
   .exerciseOption({
-    symbol_or_contract_id: "xxxxxxxx",
+    symbol_or_contract_id: "AAPL250117C00150000",
+  })
+  .then(console.log);
+```
+
+#### `doNotExerciseOption`
+
+Elects to not exercise an options contract.
+
+```typescript
+client
+  .doNotExerciseOption({
+    symbol_or_contract_id: "AAPL250117C00150000",
   })
   .then(console.log);
 ```
@@ -423,6 +483,82 @@ client
   .then(console.log);
 ```
 
+#### `getWatchlistByName`
+
+Retrieves a specific watchlist by name.
+
+```typescript
+client
+  .getWatchlistByName({
+    name: "My Watchlist",
+  })
+  .then(console.log);
+```
+
+#### `updateWatchlistByName`
+
+Updates an existing watchlist by name.
+
+```typescript
+client
+  .updateWatchlistByName({
+    name: "My Watchlist",
+    symbols: ["AAPL", "GOOGL", "MSFT"],
+  })
+  .then(console.log);
+```
+
+#### `deleteWatchlistByName`
+
+Deletes a specific watchlist by name.
+
+```typescript
+client
+  .deleteWatchlistByName({
+    name: "My Watchlist",
+  })
+  .then(console.log);
+```
+
+#### `addAssetToWatchlist`
+
+Adds an asset to a watchlist by watchlist ID.
+
+```typescript
+client
+  .addAssetToWatchlist({
+    watchlist_id: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    symbol: "NVDA",
+  })
+  .then(console.log);
+```
+
+#### `addAssetToWatchlistByName`
+
+Adds an asset to a watchlist by watchlist name.
+
+```typescript
+client
+  .addAssetToWatchlistByName({
+    name: "My Watchlist",
+    symbol: "NVDA",
+  })
+  .then(console.log);
+```
+
+#### `removeAssetFromWatchlist`
+
+Removes an asset from a watchlist.
+
+```typescript
+client
+  .removeAssetFromWatchlist({
+    watchlist_id: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    symbol: "NVDA",
+  })
+  .then(console.log);
+```
+
 #### `getPortfolioHistory`
 
 Retrieves the portfolio history.
@@ -436,21 +572,21 @@ client
   .then(console.log);
 ```
 
-#### `getConfigurations`
+#### `getAccountConfigurations`
 
 Retrieves the account configurations.
 
 ```typescript
-client.getConfigurations().then(console.log);
+client.getAccountConfigurations().then(console.log);
 ```
 
-#### `updateConfigurations`
+#### `updateAccountConfigurations`
 
 Updates the account configurations.
 
 ```typescript
 client
-  .updateConfigurations({
+  .updateAccountConfigurations({
     trade_confirm_email: "all",
     suspend_trade: false,
   })
