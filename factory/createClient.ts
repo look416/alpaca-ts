@@ -100,6 +100,7 @@ export const createClient = (options: CreateClientOptions) => {
     key: options.key || Deno.env.get("APCA_KEY_ID"),
     secret: options.secret || Deno.env.get("APCA_KEY_SECRET"),
     accessToken: options.accessToken || Deno.env.get("APCA_ACCESS_TOKEN"),
+    paper: options.paper,
   };
 
   // Check if credentials are provided

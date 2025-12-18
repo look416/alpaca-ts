@@ -16,13 +16,13 @@ await build({
   scriptModule: false,
   declaration: "inline",
   package: {
-    name: "@alpacahq/typescript-sdk",
+    name: "alpaca-ts",
     version: Deno.args[0],
     description:
       "A TypeScript SDK for the https://alpaca.markets REST API and WebSocket streams.",
     repository: {
       type: "git",
-      url: "git+https://github.com/@alpacahq/typescript-sdk.git",
+      url: "git+https://github.com/look416/alpaca-ts.git",
     },
     types: "./esm/mod.d.ts",
     keywords: [
@@ -46,12 +46,12 @@ await build({
       "alpaca markets websocket",
       "alpaca markets rest",
     ],
-    author: "117",
+    author: "look416",
     license: "MIT",
     bugs: {
-      url: "https://github.com/@alpacahq/typescript-sdk/issues",
+      url: "https://github.com/look416/alpaca-ts/issues",
     },
-    homepage: "https://github.com/@alpacahq/typescript-sdk#readme",
+    homepage: "https://github.com/look416/alpaca-ts#readme",
     main: "mod.js",
   },
   postBuild() {

@@ -1,10 +1,10 @@
-# typescript-sdk
+# alpaca-ts
 
-![version](https://img.shields.io/badge/dynamic/json?label=version&query=$[0].name&url=https://api.github.com/repos/alpacahq/typescript-sdk/tags&style=flat&color=FF33A0)
-![code](https://img.shields.io/github/languages/code-size/alpacahq/typescript-sdk?style=flat&color=196DFF&label=code)
-![test](https://img.shields.io/github/actions/workflow/status/alpacahq/typescript-sdk/deno_test.yml?style=flat&label=test)
-![coverage](https://img.shields.io/github/actions/workflow/status/alpacahq/typescript-sdk/deno_test_coverage.yml?style=flat&label=coverage)
-![build](https://img.shields.io/github/actions/workflow/status/alpacahq/typescript-sdk/deno_deploy.yml?style=flat&label=deploy)
+![version](https://img.shields.io/badge/dynamic/json?label=version&query=$[0].name&url=https://api.github.com/repos/alpacahq/alpaca-ts/tags&style=flat&color=FF33A0)
+![code](https://img.shields.io/github/languages/code-size/alpacahq/alpaca-ts?style=flat&color=196DFF&label=code)
+![test](https://img.shields.io/github/actions/workflow/status/alpacahq/alpaca-ts/deno_test.yml?style=flat&label=test)
+![coverage](https://img.shields.io/github/actions/workflow/status/alpacahq/alpaca-ts/deno_test_coverage.yml?style=flat&label=coverage)
+![build](https://img.shields.io/github/actions/workflow/status/alpacahq/alpaca-ts/deno_deploy.yml?style=flat&label=deploy)
 
 A TypeScript SDK for the https://alpaca.markets REST API and WebSocket streams.
 
@@ -48,13 +48,13 @@ Feel free to contribute and PR to your 💖's content.
 From NPM:
 
 ```terminal
-npm install @alpacahq/typescript-sdk
+npm install alpaca-ts
 ```
 
 From Skypack (or any CDN that supports ESM):
 
 ```ts
-import { createClient } from "https://cdn.skypack.dev/@alpacahq/typescript-sdk";
+import { createClient } from "https://cdn.skypack.dev/alpaca-ts";
 ```
 
 ## Usage
@@ -64,7 +64,7 @@ import { createClient } from "https://cdn.skypack.dev/@alpacahq/typescript-sdk";
 First, you'll need to create an API key on the Alpaca website. You can do that [here](https://app.alpaca.markets). Once you have an API key, you can use it to create a client.
 
 ```ts
-import { createClient } from "@alpacahq/typescript-sdk";
+import { createClient } from "alpaca-ts";
 
 const client = createClient({
   key: "YOUR_API_KEY_ID",
