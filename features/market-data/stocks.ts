@@ -275,7 +275,7 @@ export const getStocksSnapshots =
   (context: ClientContext) => (params: GetStocksSnapshotsOptions) =>
     context.request<StockSnapshots>({
       baseURL: baseURLs.marketData,
-      path: "/v1beta1/stocks/snapshots",
+      path: "/v2/stocks/snapshots",
       method: "GET",
       params,
     });

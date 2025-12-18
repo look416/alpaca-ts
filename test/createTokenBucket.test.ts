@@ -1,5 +1,5 @@
 import { assert } from "https://deno.land/std@0.217.0/assert/assert.ts";
-import { createTokenBucket } from "./createTokenBucket.ts";
+import { createTokenBucket } from "../factory/createTokenBucket.ts";
 
 Deno.test(
   "createTokenBucket should allow taking tokens within capacity",
@@ -57,3 +57,11 @@ Deno.test(
     assert(successfulRequests === 200);
   },
 );
+
+Deno.test("createTokenBucket should use default values when no options provided", () => {
+  const tokenBucket = createTokenBucket();
+
+  // Default capacity is 200
+  assert(tokenBucket.take(200) === true);
+  assert(tokenBucket.take(1) === false);
+});

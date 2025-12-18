@@ -27,6 +27,7 @@ export type CryptoBarsLatest = {
 };
 
 export type GetCryptoBarsOptions = {
+  loc: string;
   symbols: string;
   timeframe: string;
   start?: string;
@@ -170,9 +171,17 @@ export const getCryptoBars =
   (context: ClientContext) => (params: GetCryptoBarsOptions) =>
     context.request<CryptoBars>({
       baseURL: baseURLs.marketData,
-      path: "/v1beta1/crypto/bars",
+      path: `/v1beta3/crypto/${params.loc}/bars`,
       method: "GET",
-      params,
+      params: {
+        symbols: params.symbols,
+        timeframe: params.timeframe,
+        start: params.start,
+        end: params.end,
+        limit: params.limit,
+        page_token: params.page_token,
+        sort: params.sort,
+      },
     });
 
 export const getLatestCryptoBars =
@@ -257,7 +266,9 @@ export const getCryptoSnapshots =
   (context: ClientContext) => (params: GetCryptoSnapshotsOptions) =>
     context.request<CryptoSnapshots>({
       baseURL: baseURLs.marketData,
-      path: "/v1beta1/crypto/snapshots",
+      path: `/v1beta3/crypto/${params.loc}/snapshots`,
       method: "GET",
-      params,
+      params: {
+        symbols: params.symbols,
+      },
     });

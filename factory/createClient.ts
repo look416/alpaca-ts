@@ -118,6 +118,7 @@ export const createClient = (options: CreateClientOptions) => {
     path,
     params,
     data,
+    baseURL: requestBaseURL,
   }: RequestOptions<T>): Promise<T> => {
     await new Promise((resolve) => {
       // Poll the token bucket every second
@@ -130,14 +131,15 @@ export const createClient = (options: CreateClientOptions) => {
       }, 1000);
     });
 
-    // Construct the URL
-    const url = new URL(path, baseURL);
+    // Construct the URL - use request-specific baseURL if provided
+    const url = new URL(path, requestBaseURL || baseURL);
 
     if (params) {
-      // Append query parameters to the URL
-      url.search = new URLSearchParams(
-        Object.entries(params) as [string, string][],
-      ).toString();
+      // Filter out undefined and null values, then append query parameters to the URL
+      const filteredParams = Object.entries(params).filter(
+        ([_, value]) => value !== undefined && value !== null
+      ) as [string, string][];
+      url.search = new URLSearchParams(filteredParams).toString();
     }
 
     // Construct the headers
